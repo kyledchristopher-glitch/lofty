@@ -1,0 +1,294 @@
+.pageShell {
+  min-height: 100vh;
+  background: #050403;
+}
+
+.scene {
+  --vignette-opacity: 0.28;
+  --night-wash-opacity: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #050403;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.starsWrap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 100%;
+  height: 45vh;
+  z-index: 3;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.sun {
+  position: absolute;
+  top: 44.7%;
+  left: 74%;
+  width: clamp(40px, 3.3vw, 58px);
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  filter: blur(0.15px) drop-shadow(0 0 18px rgba(255, 210, 100, 0.72));
+  opacity: 0.95;
+  will-change: transform, opacity;
+}
+
+.bonfireWrap {
+  position: absolute;
+  right: clamp(88px, 17vw, 280px);
+  bottom: clamp(8px, 2.2vh, 26px);
+  width: clamp(78px, 8.2vw, 138px);
+  z-index: 7;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.bonfire {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  animation: fireFlicker 0.82s infinite alternate ease-in-out;
+  transform-origin: 50% 100%;
+  filter: brightness(1.05) saturate(1.12) drop-shadow(0 0 24px rgba(245, 117, 36, 0.58));
+}
+
+.fireGlow {
+  position: absolute;
+  left: 50%;
+  bottom: -13%;
+  width: 210%;
+  height: 42%;
+  z-index: 1;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 175, 74, 0.62) 0%, rgba(230, 93, 28, 0.32) 34%, rgba(137, 54, 20, 0.12) 56%, transparent 78%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: glowPulse 2.8s infinite ease-in-out;
+}
+
+.copyBlock {
+  position: absolute;
+  left: 43%;
+  bottom: clamp(92px, 15vh, 150px);
+  z-index: 9;
+  width: min(88vw, 720px);
+  transform: translateX(-50%);
+  text-align: center;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.72);
+  will-change: opacity, transform;
+}
+
+.eyebrow {
+  margin: 0 0 clamp(10px, 1.6vw, 18px);
+  color: rgba(255, 234, 205, 0.82);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.72rem, 1.25vw, 1rem);
+  font-weight: 600;
+  letter-spacing: clamp(0.18em, 0.8vw, 0.34em);
+  text-transform: uppercase;
+}
+
+.copyBlock h1 {
+  margin: 0;
+  color: #fff6e8;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3rem, 8.1vw, 7.25rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.bodyCopy {
+  width: min(92%, 560px);
+  margin: clamp(14px, 2vw, 24px) auto 0;
+  color: rgba(255, 242, 225, 0.88);
+  font-size: clamp(1.16rem, 2.5vw, 1.7rem);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4.8vh, 48px);
+  z-index: 12;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+  color: rgba(255, 241, 219, 0.78);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.68rem, 1vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.7);
+}
+
+.scrollHint i {
+  display: block;
+  width: 1px;
+  height: 52px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.9), transparent);
+  animation: scrollLine 1.8s infinite ease-in-out;
+}
+
+.nightWash {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: linear-gradient(180deg, rgba(8, 12, 32, 0.58) 0%, rgba(5, 4, 3, 0.1) 48%, rgba(5, 4, 3, 0.34) 100%);
+  opacity: var(--night-wash-opacity);
+  pointer-events: none;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: radial-gradient(circle at 50% 45%, transparent 0%, transparent 44%, rgba(0, 0, 0, 0.48) 72%, rgba(0, 0, 0, 0.92) 100%);
+  opacity: var(--vignette-opacity);
+  pointer-events: none;
+}
+
+.assetWarning {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: grid;
+  gap: 5px;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 14px;
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  border-radius: 14px;
+  background: rgba(5, 4, 3, 0.82);
+  color: #fff7ed;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(12px);
+  font-size: 0.92rem;
+}
+
+.assetWarning strong {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.06em;
+}
+
+.assetWarning code {
+  color: #fbbf24;
+  white-space: normal;
+}
+
+@keyframes fireFlicker {
+  0% {
+    transform: scaleX(1) scaleY(1);
+    filter: brightness(1.02) saturate(1.08) drop-shadow(0 0 22px rgba(245, 117, 36, 0.5));
+  }
+  36% {
+    transform: scaleX(1.026) scaleY(0.985) translateY(1px);
+    filter: brightness(1.18) saturate(1.24) drop-shadow(0 0 34px rgba(255, 143, 48, 0.68));
+  }
+  70% {
+    transform: scaleX(0.985) scaleY(1.025) translateY(-1px);
+    filter: brightness(1.1) saturate(1.18) drop-shadow(0 0 28px rgba(240, 96, 28, 0.62));
+  }
+  100% {
+    transform: scaleX(1.018) scaleY(1.008);
+    filter: brightness(1.24) saturate(1.3) drop-shadow(0 0 38px rgba(255, 184, 78, 0.72));
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.58;
+    transform: translateX(-50%) scale(0.94);
+  }
+  50% {
+    opacity: 0.92;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scaleY(0.5);
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(22px) scaleY(1);
+  }
+}
+
+@media (max-width: 760px) {
+  .scene {
+    min-height: 620px;
+  }
+
+  .sun {
+  position: absolute;
+  top: 43.6%;
+  left: 74%;
+  width: clamp(40px, 3.3vw, 58px);
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  filter: blur(0.15px) drop-shadow(0 0 18px rgba(255, 210, 100, 0.72));
+  opacity: 0.95;
+  will-change: transform, opacity;
+}
+
+  .starsWrap {
+    height: 43vh;
+  }
+
+  .copyBlock {
+    left: 50%;
+    bottom: clamp(98px, 17vh, 142px);
+  }
+
+  .bonfireWrap {
+    right: clamp(54px, 16vw, 96px);
+    bottom: clamp(8px, 2vh, 22px);
+    width: clamp(74px, 20vw, 118px);
+  }
+}
+
+
+.horizonMask {
+  display: none;
+}
+
+
+.sunClip {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  clip-path: inset(0 0 53.6% 0);
+}
